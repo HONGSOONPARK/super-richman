@@ -5,14 +5,14 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('yaammoney:server');
+var debug = require('debug')('goldbar:server');
 var http = require('http');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3800');
+var port = normalizePort(process.env.PORT || '3300');
 app.set('port', port);
 
 /**

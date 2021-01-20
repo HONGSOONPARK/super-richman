@@ -15,11 +15,7 @@ router.get('/', function(req, res, next) {
 
   connection.query(sql1, function (error, results, fields){
     if (!error) {
-      console.log('first');
-      console.log(results);
       res.render('index', {list: results});
-
-
     }else{
       console.log('query error : ' + error);
     }
