@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  div
+    p today
+
+
+  div
+    table
+      thead
+        tr
+          th 구성종목(구성자산)
+          th 주식수(계약수)
+          th 구성비중
+          th 시세
+          th 전일비
+          th 등락률
+
+      tbody
+        each value, i in list
+          tr
+            td=value.NAME
+            td=value.AMOUNT
+            td=value.PER
+            td=value.PRICE
+            td=value.DIFF
+            td=value.FLUC
+
+

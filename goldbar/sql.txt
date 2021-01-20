@@ -1,0 +1,133 @@
+
+DROP TABLE list;
+DROP TABLE history;
+
+CREATE TABLE list(
+ list_no INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT  '고유번호',
+ name VARCHAR(20) NOT NULL COMMENT  '식당이름',
+ code1 INT COMMENT '분류번호1',
+ code2 INT COMMENT '분류번호2',
+ code3 INT COMMENT '분류번호3'
+ );
+
+
+CREATE TABLE history(
+ history_no INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT  '고유번호',
+ list_no INT NOT NULL COMMENT  'list 번호',
+ date  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT  '이용일자'
+ );
+
+
+INSERT INTO list(name) values ('이치하루');
+INSERT INTO list(name) values ('홍신각');
+INSERT INTO list(name) values ('진국수');
+INSERT INTO list(name) values ('초밥사랑');
+INSERT INTO list(name) values ('밀당');
+
+commit;
+
+
+INSERT INTO history(list_no, date) values (1, now());
+
+
+SELECT 
+A.name, B.date
+ FROM list AS A LEFT JOIN history AS B 
+ ON A.list_no = B.list_no 
+ WHERE B.date < date_add(now(), interval-7 day)
+ or B.date is null
+ORDER BY RAND() LIMIT 3;
+
+SELECT 
+A.list_no, A.name,
+ FROM list A
+ORDER BY A.list_no asc;
+
+INSERT INTO list(name) values ('name');
+
+delete FROM history where DATE_FORMAT(date,'%Y%m%d') = DATE_FORMAT(now(),'%Y%m%d');
+
+SELECT A.list_no, A.name, B.date 
+  FROM list AS A LEFT JOIN history AS B
+  ON A.list_no = B.list_no 
+  WHERE date_add(B.date, interval-7 day)
+        OR B.date is not null;
+
+
+
+INSERT INTO history(list_no, date) values (35, now());
+
+DELETE A,B FROM list AS A LEFT JOIN history AS B ON A.list_no = B.list_no  WHERE A.list_no = 35;
+
+
+
+
+
+
+
+
+
+## export sql
+
+-- --------------------------------------------------------
+-- 호스트:                          116.45.90.231
+-- 서버 버전:                        10.1.37-MariaDB-0+deb9u1 - Raspbian 9.0
+-- 서버 OS:                        debian-linux-gnueabihf
+-- HeidiSQL 버전:                  10.2.0.5599
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+-- 테이블 데이터 test.list:~38 rows (대략적) 내보내기
+DELETE FROM `list`;
+/*!40000 ALTER TABLE `list` DISABLE KEYS */;
+INSERT INTO `list` (`list_no`, `name`, `code1`, `code2`, `code3`) VALUES
+	(55, '이치하루', NULL, NULL, NULL),
+	(56, '점심시간', NULL, NULL, NULL),
+	(57, '진국수', NULL, NULL, NULL),
+	(58, '차이홍', NULL, NULL, NULL),
+	(59, '복성각', NULL, NULL, NULL),
+	(60, '엉터리생고기', NULL, NULL, NULL),
+	(61, '동경암', NULL, NULL, NULL),
+	(62, '북창동순두부', NULL, NULL, NULL),
+	(63, '김재운초밥사랑', NULL, NULL, NULL),
+	(64, '샤브샤브', NULL, NULL, NULL),
+	(65, '굴국밥', NULL, NULL, NULL),
+	(66, '포로이', NULL, NULL, NULL),
+	(67, '만두집', NULL, NULL, NULL),
+	(68, '추어탕', NULL, NULL, NULL),
+	(69, '반장떡볶이', NULL, NULL, NULL),
+	(70, '낙지수제비', NULL, NULL, NULL),
+	(71, '옥면가', NULL, NULL, NULL),
+	(73, '가츠몽', NULL, NULL, NULL),
+	(78, '태일이네에서 치킨', NULL, NULL, NULL),
+	(79, '김일도', NULL, NULL, NULL),
+	(80, '온다옴', NULL, NULL, NULL),
+	(81, '황태해장국', NULL, NULL, NULL),
+	(82, '희희', NULL, NULL, NULL),
+	(83, '을밀대', NULL, NULL, NULL),
+	(84, '신참떡볶이', NULL, NULL, NULL),
+	(85, '고래카레', NULL, NULL, NULL),
+	(86, '홍대개미', NULL, NULL, NULL),
+	(87, '맥도날드', NULL, NULL, NULL),
+	(88, '서브웨이', NULL, NULL, NULL),
+	(89, '트라고', NULL, NULL, NULL),
+	(90, '앨리스리틀이태리', NULL, NULL, NULL),
+	(91, '오목집', NULL, NULL, NULL),
+	(92, '호계식', NULL, NULL, NULL),
+	(93, '사카나초밥', NULL, NULL, NULL),
+	(94, '갈스시', NULL, NULL, NULL),
+	(95, '버거킹', NULL, NULL, NULL),
+	(96, '시래기국밥', NULL, NULL, NULL),
+	(97, '운주당', NULL, NULL, NULL);
+/*!40000 ALTER TABLE `list` ENABLE KEYS */;
+
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
+
